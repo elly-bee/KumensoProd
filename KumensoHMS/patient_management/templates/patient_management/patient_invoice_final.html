@@ -1,0 +1,234 @@
+<html lang="en"> {% include 'base.html' %} 
+    {% include 'base/header.html' %} 
+    <div class="container-fluid"> 
+        {% include 'base/navbar.html' %} 
+        <div class="main-container">
+            <div class="content-wrapper">
+                
+
+                <div class="row gutters">
+                    <div class="col-md-9 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div class="invoice-container">
+
+                                    <div class="invoice-header">
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            {% for company in company%}
+                                            <div class="col-sm-6">
+                                                
+                                                <div class="invoice-logo">{{company.name}} - {{company.desc}}</div>
+                                            </div>
+                                            {% endfor%}
+                                            <div class="col-sm-6">
+                                                <div class="btn-group float-right">
+                                                    <a href="#" class="btn btn-primary btn-sm">
+                                                        <i class="icon-export"></i> Export PDF
+                                                    </a>
+                                                    <a href="#" class="btn btn-secondary btn-sm ml-2">
+                                                        <i class="icon-printer"></i> Print
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+                                    </div>
+
+                                    <div class="invoice-address">
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-sm-4">
+                                                <small>From,</small><br><br>
+                                                {% for company in company%}
+                                                <h6>{{company.name}} - {{company.desc}}</h6>
+                                                <address>
+                                                    {{company.address}}<br>
+                                                    {{company.country__id_country_name}}<br>
+                                                    {{company.town}}<br>
+                                                    {{company.contact_no}}<br>
+                                                    {{company.tpin}}<br>
+                                                </address>
+                                                {% endfor%}
+                                            </div>
+                                            {% for customer in customer %}
+                                            <div class="col-sm-4">
+                                                <small>To,</small><br><br>
+                                                <h6>{{checkId.patient}} {{customer.last_name}}</h6>{% endfor %}
+                                                {% for contact in customer_contact%}
+                                                <address>
+                                                    {{contact.address_1}}<br>
+                                                    {{contact.city}}<br>
+                                                    {{contact.phone_number_1}}<br>
+                                                    {{contact.country_id__country_name}}
+                                                </address>
+                                                {% endfor%}
+                                            </div>
+                                            
+                                            <div class="col-sm-4">
+                                                <div class="invoice-details">
+                                                    <small>Invoice No - <span class="badge badge-info">{{checkId.checkin_id}}</span></small><br>
+                                                    <small>{{checkId.checkout_date}}</small><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+                                    </div>
+
+                                    <div class="invoice-body">
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-sm-6">
+                                                
+                                            </div>
+                                            <div class="col-sm-6">
+
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Items</th>
+                                                                <th>Product ID</th>
+                                                                <th>Quantity</th>
+                                                                <th>Item Value</th>
+                                                                <th>Sub Total</th>
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            
+                                                            {% for medication in medication%}
+                                                            
+                                                            <tr>
+                                                                <td>
+                                                                    {{medication.prescribed_id__desc}}
+                                                                    <p class="m-0 text-muted">
+                                                                        
+                                                                    </p>
+                                                                </td>
+                                                                <td>{{medication.prescribed_id__Inventory_code}}</td>
+                                                                <td>{{medication.quantity}}</td>
+                                                                <td>ZMW {{medication.prescribed_id__selling_price}}</td>
+                                                                <td>ZMW {{medication.cost}}</td>
+                                                                
+                                                            </tr>
+                                                            {% endfor%}
+                                                            
+                                                            
+                                                        </tbody>
+
+
+
+                                                        <tbody>
+                                                            
+                                                            {% for services in services%}
+                                                            <tr>
+                                                                <td>
+                                                                    {{services.name}}
+                                                                    <p class="m-0 text-muted">
+                                                                        
+                                                                    </p>
+                                                                </td>
+                                                                <td>{{services.category_id__name}}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>ZMW {{services.cost}}</td>
+                                                            </tr>
+                                                            {% endfor%}
+                                                            
+                                                            
+                                                        </tbody>
+
+                                                        
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="invoice-payment">
+                                            <div class="row gutters">
+                                                <div class="col-md-6 col-sm-12">
+                                                </div>
+                                                <div class="col-md-6 col-sm-10 order-last">
+                                                    <table class="table m-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <p>
+                                                                        Subtotal<br>
+                                                                        {% for company in company%}
+                                                                        Tax ({{company.vat}})<br>
+                                                                        {% endfor %}
+                                                                    </p>
+                                                                    <h5 class="text-danger"><strong>Grand Total</strong></h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="text-right">
+                                                                        {{sub_total}}<br>
+                                                                        {{vat}}<br>
+                                                                       
+                                                                    </p>
+                                                                    <h5 class="text-danger text-right"><strong>{{totalInvoiceCost}}</strong></h5>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                    </div>
+
+                                    <div class="invoice-footer">
+                                        Thank you for your Business.
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+
+                        <div class="row gutters">
+                            <div class="col-md-12 col-sm-4">
+                                <div class="invoice-status">
+                                    <i class="icon-insert_invitation"></i>
+                                    <h2 class="status text-success">380</h2>
+                                    <h5 class="status-title">Invoices Paid</h5>
+                                    <p class="status-type">An invoice, bill or tab is a commercial document issued by a seller to a
+                                        buyer.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-4">
+                                <div class="invoice-status">
+                                    <i class="icon-event_note"></i>
+                                    <h2 class="status text-danger">75</h2>
+                                    <h5 class="status-title">Invoices Overdue</h5>
+                                    <p class="status-type">An invoice, bill or tab is a commercial document issued by a seller to a
+                                        buyer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>

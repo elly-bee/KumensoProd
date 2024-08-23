@@ -1,0 +1,328 @@
+{% block content %}
+
+
+
+<div class="modal fade" id="CheckinUpdate" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Update Patient Detials </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                   {{ checkIn_status.status }}
+                   {{checkIn_status.patient}}
+                   {{checkIn_status.department}}
+                   {{checkIn_status.staff}}
+                </br>
+                    <button type="submit" class="btn btn-primary">
+                        Complete
+                    </button>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-xl" id="AddPrescription" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Patient Prescription </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ prescription_form }}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-lighten" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Check In</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-xl" id="AddCheckIn" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Check In Patient</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div>
+
+                        <div style="display: none;">
+                            <label for="id_staff">Staff:</label>
+                            {{ checkIn_form.patient}}
+                        </div>
+                        <div style="display: none;">
+                            <label for="id_staff">Staff:</label>
+                            {{ checkIn_form.staff}}
+                        </div>
+                        <div>
+                            <label for="id_staff">Department:</label>
+                            {{ checkIn_form.department}}
+                        </div>
+                        <div>
+                            <label for="id_staff">Status:</label>
+                            {{ checkIn_form.status}}
+                        </div>
+                        <!-- Other fields from patient_form... -->
+
+                        <!-- Render the service field grouped -->
+                        <div>
+                            <label>Service:</label>
+                            <br>
+                            <div class="row">
+                                {% for group in service_groups %}
+                                <div class="col-md-4">
+
+                                    <br> {% for service in group.services %}
+
+                                    <label>
+                                        <input type="checkbox" name="service" value="{{ service.pk }}"> {{ service.name }}
+                                    </label>
+
+                                    <br> {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-lighten" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Check In</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="AddDiagnosis" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Patient Diagnosis </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ diagnosis_form.as_p }}
+                    
+                    <button type="submit" class="btn btn-primary">Add Diagnosis</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="HealthRecord" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Patient Diagnosis </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ patient_health_record_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Add Diagnosis</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="AddVitals" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Update Patient Detials </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                   {{ vitals_form }}
+                 
+                    
+                </br>
+                    <button type="submit" class="btn btn-primary">
+                        New Vitals 
+                    </button>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="updatePatient" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Update Patient Detials </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                   
+                    {{ patient_form.as_p }}
+
+    <!-- Render other forms -->
+                    <button type="submit">Update Patient Details</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal for Appointment update-->
+<div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Delete </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <a href="{% url 'user_app:list' %}" class="btn btn-primary mx-1">Cancel</a>
+                        <input class="btn btn-danger" value="Delete" type="submit">
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal for Appointment update-->
+<div class="modal fade" id="AppointmentUpdate" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="basicModalLabel">Appointment Update</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'patient_app:appointment' %}">
+                    {% csrf_token %}
+
+                        <div class="col-sm-12">
+                            <div class="blog">
+
+                                {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            
+                                <div class="blog-body">
+                                
+                                    <h6 class="blog-date">
+                                        <div class="form-group">
+                                            <h5>Set Appointment Time</h5><span class="divider">{{ form.doctor }}</span>
+                                            <span class="divider d-none">{{ form.patient}}</span>
+                                            <h5>Set Appointment Time</h5><span class="divider ">{{ form.start_time}}</span>
+                                            <h5>Set Appointment Time</h5><span class="date">{{ form.end_time}}</span>
+                                            <h5>Date</h5><span class="date">{{ form.appointment_date}}</span>
+                                            <h5>Reason</h5><span class="date">{{ form.appointment_reason}}</span>
+                                            <h5>Status</h5><span class="date ">{{ form.status}}</span>
+                                        </div>
+                                    </h6>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-lighten" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function setDeleteUrl(url) {
+        var deleteModal = document.getElementById('AppointmentUpdate');
+        var deleteLink = deleteModal.querySelector('.delete-link');
+        deleteLink.setAttribute('href', url);
+    }
+</script>
+
+
+{% endblock content %}

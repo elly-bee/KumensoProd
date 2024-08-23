@@ -1,0 +1,49 @@
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>User Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for user in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.city }}</td>
+          <td>{{ user.user_type }}</td>
+          <td><a href="{% url 'user_app:delete' user.id %}"> {{user.id}} Delete</a> | <a href="{% url 'user_app:useredit' user.id %}"> {{user.id}} edit</a>
+            | <a href="{% url 'user_app:passwordreset' user.id %}"> {{user.id}} Password Reset</a> 
+            | <a href="{% url 'user_app:profile' user.id %}"> {{user.id}} Profile</a></td>
+          <td>{% for dept in user.department.all %}
+            <li>{{ dept.department }}</li>
+            
+        {% endfor %}</td>
+       
+
+        
+        
+      
+          <td>
+      
+          
+            
+
+          </td>
+         
+
+          {% endfor %}
+        </tr>
+     
+
+      </tbody>
+    </table>
+    </div>

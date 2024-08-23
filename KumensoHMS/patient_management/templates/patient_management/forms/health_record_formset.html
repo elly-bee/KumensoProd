@@ -1,0 +1,60 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="form-header">
+    <h6>Patient's Health Record</h6>
+    <small class="text-body-tertiary">Enter the patient's medical history</small>
+</div>
+<div class="form-rows">
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div class="row">
+            <div class="col-6">
+                <label for="{{ form.allergies.id_for_label }}" class="h6 fw-medium">Allergies</label>
+                {% render_field form.allergies|add_class:"form-control"|add_error_class:"is-invalid" placeholder="Enter the patients allergies..." aria-describedby="allergiesHelpBlock" %}
+                {% if form.allergies.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in  form.allergies.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                <label for="{{ form.medication.id_for_label }}" class="h6 fw-medium">Medication</label>
+                {% render_field form.medication|add_class:"form-control"|add_error_class:"is-invalid" placeholder="Enter medication the patient is taking..." aria-describedby="medicationHelpBlock" %}
+                {% if form.medication.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in  form.medication.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="{{ form.medical_history.id_for_label }}" class="h6 fw-medium">Medical History</label>
+                {% render_field form.medical_history|add_class:"form-control"|add_error_class:"is-invalid" placeholder="Enter the patients medical history..." aria-describedby="medicalHistnHelpBlock" %}
+                {% if form.medical_history.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in  form.medical_history.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                <label for="{{ form.surgical_history.id_for_label }}" class="h6 fw-medium">Surgical History</label>
+                {% render_field form.surgical_history|add_class:"form-control"|add_error_class:"is-invalid" placeholder="Enter the patients surgical history..." aria-describedby="surgicalHistHelpBlock" %}
+                {% if form.surgical_history.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in  form.surgical_history.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

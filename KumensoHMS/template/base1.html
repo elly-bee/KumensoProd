@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Kumenddso{% endblock %}</title>
+        <meta name="description" content="Gralix actuarial reserve tool">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "/assets/css/custom.css" %}">
+        <link rel="stylesheet" href="{% static "/assets/css/styles.css" %}">
+
+
+
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Icomoon Font Icons css -->
+        <link href="{% static 'assets/fonts/style.css' %}" rel="stylesheet">
+    <!-- Main css -->
+        <link href="{% static 'assets/css/main.min.css' %}" rel="stylesheet">
+
+         <link href="{% static 'assets/vendor/datatables/dataTables.bs4.css' %}" rel="stylesheet">
+       <link href="{% static 'assets/vendor/datatables/dataTables.bs4-custom.css' %}" rel="stylesheet">
+        
+    </head>
+    <body>
+        <header>
+            <nav class="navbar bg-body-tertiary border-bottom">
+                <div class="container-fluid">
+                    <div class=" d-flex gap-4 align-items-center">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Kumenso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item"><a class="nav-link" aria-current="page" href="">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url "patient_management_index" %}">Patient Management</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="navbar-brand" href="#">Kumenso</a>
+                    <div aria-label="breadcrumb">
+                        {% block primary_breadcrumb %}{% endblock %}
+                    </div>
+                    </div>
+                    <dIV class="d-flex align-items-center">
+                        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Mwelwa Chipimo</button>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasRightLabel">Mwelwa Chipimo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                ...
+                            </div>
+                        </div>
+                    </dIV>
+                </div>
+                <div class="container-fluid">
+                    {% block secondary_nav %}{% endblock %}
+                </div>
+            </nav>
+        </header>
+        <main>{% block content %}{% endblock %}</main>
+        <footer class="p-2 border-top text-center">
+            <small class="text-body-tertiary">Kumenso Eye Clinic</small>
+        </footer>
+        {% comment %} Javascript {% endcomment %}
+        <script src="{% static '/assets/js/bootstrap.bundle.min.js' %}"></script>
+              <!-- Required jQuery first, then Bootstrap Bundle JS -->
+              <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+              <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+              <script src="{% static 'assets/js/moment.js' %}"></script>
+    </body>
+</html>

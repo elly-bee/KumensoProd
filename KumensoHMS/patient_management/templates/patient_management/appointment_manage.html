@@ -1,0 +1,115 @@
+<!doctype html>
+{% load static %}
+
+{% load fullcalendar_tags %}
+<html lang="en">
+	<!-- base Page  -->
+	{% include 'base.html' %}
+	<!-- Page header start -->
+	{% include 'base/header.html' %}
+	<!-- Navigation header start -->
+	{% include 'base/navbar.html' %}
+    {% include 'base/modelForms.html' %}
+
+
+
+	<body>
+        <div class="main-container">
+            <!-- Content wrapper start -->
+            <div class="content-wrapper">
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-lg-9 col-sm-12 col-12">
+                        <div class="row gutters">
+                                    <div class="col-sm-12">
+                                        {% for manapp in Appointmentdata.activeApp %}
+                                        <div class="blog">
+                                            <img class="blog-img" src="{% static 'assets/img/bg1.jpeg' %}" alt="Appointment">
+                                            <div class="blog-body">
+                                                <h3 class="blog-title"></h3>
+                                                <div class="blog-description">
+                                                        <div class="blog-body">
+                                                            <h3 class="blog-title">{{manapp.patient}}</h3>
+                                                            <h6 class="blog-date">
+                                                                <span class="category">{{manapp.doctor}}</span>
+                                                                
+                                                                
+                                                            </h6>
+                                                            <div class="blog-description">
+                                                                <span class="date">{{ manapp.appointment_date}}</span>
+                                                                <span class="divider">{{ manapp.start_time}}</span>
+                                                                {{manapp.status}}
+                                                                <p>{{ manapp.appointment_reason}}</p>
+                                                            </div>
+                                                            <div class="blog-actions">
+                                                                
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AppointmentUpdate">
+                                                                    Reschedule
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+            
+         
+                            
+                            
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-12 col-12">
+                        <div class="row gutters">
+                           
+                            
+                            <div class="col-lg-12 col-md-4 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Appointed Date and Time</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="overall-events">
+                                            <a href="#" class="event-block bg-primary">
+                                                <i class="icon-event_available"></i>
+                                                <div class="total-events"><h4>{{ manapp.appointment_date}}</h4></div>
+                                                
+                                            </a>
+                                            <a href="#" class="event-block bg-secondary">
+                                                <i class="icon-event_available"></i>
+                                                <div class="total-events">
+                                                   
+                                                    <h4>{{ manapp.start_time}}</h4>
+        
+        
+                                                </div>
+                                                
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+                <!-- Row end -->
+
+
+            </div>
+            <!-- Content wrapper end -->
+
+
+        </div>
+
+
+        <!-- Modal -->
+        
+                
+            
+        
+	</body>
+
+</html>

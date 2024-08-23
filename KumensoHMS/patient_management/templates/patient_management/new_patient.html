@@ -1,0 +1,35 @@
+{% include 'base.html' %}
+	{% include 'base/header.html' %}
+	{% include 'base/navbar.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <form action="{% url 'patient_app:new_patient' %}" method="post" novalidate> {% csrf_token %} <div class="page-header d-flex justify-content-between align-items-center bg-white">
+        <button type="submit" class="btn btn-primary px-5">Save</button>
+      </div>
+      <div class="card p-4">
+        <ul class="nav nav-tabs" id="patientFormTabs" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" id="patient-info-tab" data-bs-toggle="tab" data-bs-target="#patient-info" type="button" role="tab" aria-controls="patient-info" aria-selected="true">Personal Information</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="contact-info-tab" data-bs-toggle="tab" data-bs-target="#contact-info" type="button" role="tab" aria-controls="contact-info" aria-selected="false">Contact Information</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="medical-history-tab" data-bs-toggle="tab" data-bs-target="#medical-history" type="button" role="tab" aria-controls="medical-history" aria-selected="false">Medical History and Rsik Factors</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="patientFormTabsContent">
+          <div class="tab-pane fade show active" id="patient-info" role="tabpanel" aria-labelledby="patient-info-tab"> {% include "patient_management/forms/patient_form.html" with form=patient_form %} </div>
+          <div class="tab-pane fade" id="contact-info" role="tabpanel" aria-labelledby="contact-info-tab"> {% include "patient_management/forms/contact_formset.html" with formset=contact_formset %} {% include "patient_management/forms/primary_contact_formset.html" with formset=primary_contact_formset %} </div>
+          <div class="tab-pane fade" id="medical-history" role="tabpanel" aria-labelledby="medical-history-tab"> {% include "patient_management/forms/health_record_formset.html" with formset=health_record_formset %} {% include "patient_management/forms/risk_factors_formset.html" with formset=risk_factors_formset %} </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+

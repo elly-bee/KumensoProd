@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+	{% include 'base.html' %}
+		{% include 'base/header.html' %}
+		<div class="container-fluid">
+			{% include 'base/navbar.html' %}
+			<div class="main-container">
+				{% include 'base/modelForms.html' %}
+
+				<!-- Page header start -->
+				
+				<!-- Page header end -->
+
+				<!-- Content wrapper start -->
+				<div class="content-wrapper">
+						<div class="col-md-12 text-right p-1">
+						<a href="{% url 'user_app:adduser' %}" class="btn btn-primary">Add New User</a>
+					  </div>
+					<!-- Row start -->
+					<div class="row gutters">
+						
+						<div class="col-sm-12">
+							
+							<div class="table-container">
+
+								<!--*************************
+									*************************
+									*************************
+									Basic table start
+								*************************
+								*************************
+								*************************-->
+
+								
+
+								<div class="table-responsive">
+									<table id="basicExample" class="table">
+										<thead>
+											
+											<tr>
+												<th>#</th>
+												<th>Name</th>
+												<th>ID</th>
+												<th>Age</th>
+												<th>Address</th>
+												<th>Phone</th>
+												<th>Email</th>
+												<th>Last Visit</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for user in data %}
+												<tr>
+												<td>{{ forloop.counter }}</td>
+												<td>{{ user.first_name }} {{ user.last_name }}</td>
+												<td>{{ user.username }}</td>
+												<td>{{ user.email }}</td>
+												<td>{{ user.marital_status }}</td>
+												<td>{{ user.user_roles }}</td>
+												<td>{{ user.company }}</td>
+												<td>{{ user.department }}</td>
+												<td>
+
+													<div class="btn-group btn-group-sm">
+														<a href="{% url 'user_app:useredit' user.id %}">
+															<button type="button" class="btn btn-info">
+															  <i class="icon-edit1"></i>
+															</button>
+														</a>
+														<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser" onclick="setDeleteUrl('{% url 'user_app:delete' user.id %}')">
+															<i class="icon-cancel"></i>
+														</button>
+														
+														<a href="{% url 'user_app:profile' user.id %}">
+															<button type="button" class="btn btn-dark">
+																<i class="icon-eye"></i>
+															</button>
+															</a>
+													</div>
+
+
+												</td>
+
+												<!--<td>{% for dept in user.department.all %}
+													<li>{{ dept.department }}</li>
+													
+												{% endfor %}</td>-->
+
+												
+												{% endfor %}
+												</tr>
+											
+										</tbody>
+									</table>
+								</div>
+								<!--*************************
+									*************************
+									*************************
+									Basic table end
+								*************************
+								*************************
+								*************************-->
+
+							</div>
+						</div>
+					</div>
+					<!-- Row end -->
+
+				</div>
+				<!-- Content wrapper end -->
+
+			</div>
+
+
+			
+			<!-- Content wrapper end -->
+
+
+		</div>
+			<!-- *************
+				************ Main container end *************
+			************* -->
+
+		
+
+		</div>
+	
+		{% include 'base/footer.html' %}
+</html>

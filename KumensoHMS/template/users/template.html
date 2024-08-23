@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	<!-- base Page  -->
+	{% include 'base.html' %}
+	<!-- Page header start -->
+	{% include 'base/header.html' %}
+	<!-- Navigation header start -->
+	{% include 'base/navbar.html' %}
+	<body>
+	
+		<div class="container-fluid"><!--  Main container start -->
+
+			<h1>Add Country</h1>
+					<form method="post">
+						{% csrf_token %}
+						{{ form }}  <!-- Render all fields of CountryaddForm as paragraphs -->
+						<button type="submit">Submit</button>
+					</form>
+				
+					<h1>Add Department</h1>
+					<form method="post">
+						{% csrf_token %}
+						{{ dept_form }}  <!-- Render all fields of DeptCreateForm as paragraphs -->
+						<button type="submit">Submit</button>
+					</form>
+
+		</div><!--  Main container end -->
+
+		<!-- Page footer start -->
+		{% include 'base/footer.html' %}
+	</body>
+
+</html>

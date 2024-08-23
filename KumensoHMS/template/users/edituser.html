@@ -1,0 +1,147 @@
+{% block content %}
+{% include 'base.html' %}
+{% include 'base/header.html' %}
+{% include 'base/navbar.html' %}
+
+
+
+
+
+
+<div class="main-container">
+
+    <!-- Page header start -->
+
+    <!-- Page header end -->
+
+    <!-- Content wrapper start -->
+    <div class="content-wrapper">
+      
+        <!-- Row start -->
+        <form class="form-sample" id="user_update_form" method="post">
+            {% csrf_token %}
+            <div class="row gutters">
+            <div class="col-md-3 col-sm-4 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="img/user2.png" alt="Medical Dashboards" />
+                                </div>
+                                <h5 class="user-name">{{data.first_name}} {{form.last_name}}</h5>
+                                <h6 class="user-email">{{form.email}}</h6>
+                            </div>
+                            <div class="setting-links">
+                                <a href="#">
+                                    <i class="icon-bell"></i>
+                                    Notifications
+                                </a>
+                                <a href="#">
+                                    <i class="icon-chat"></i>
+                                    Messages
+                                </a>
+                                <a href="#">
+                                    <i class="icon-date_range"></i>
+                                    Tasks
+                                </a>
+                                <a href="#">
+                                    <i class="icon-settings"></i>
+                                    Settings
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 ">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Update Profile</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="row-sm-4 col-4">
+                                <div class="form-group">
+                                    <label for="fullName">Title</label>
+                                    {{form.title_code}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    {{form.first_name}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="eMail">Email</label>
+                                    {{form.last_name}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    {{form.email}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="sTate">Gender</label>
+                                    {{form.gender}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="sTate">Country</label>
+                                    {{form.country}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Department</label>
+                                    {{form.department}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="eMail">Designation</label>
+                                    {{form.designation}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">User Roles</label>
+                                    {{form.user_roles}}
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label for="addRess">Biography</label>
+                                    {{form.biography}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="ciTy">Address</label>
+                                    {{form.address}}
+                                </div>
+                               
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+        </form>
+
+        <div class="col-sm-12">
+            <div class="text-right">
+                <button type="button" id="cancel" name="cancel" class="btn btn-light">Cancel</button>
+                <button type="submit" form="user_update_form" class="btn btn-primary">Update</button>
+               
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Content wrapper end -->
+
+
+</div>
+<!-- *************
+    ************ Main container end *************
+************* -->
+
+
+</div>
+{% include 'base/footer.html' %}
+{% endblock content %}

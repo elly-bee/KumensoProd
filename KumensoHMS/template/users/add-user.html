@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+	{% include 'base.html' %}
+	{% include 'base/header.html' %}
+	{% include 'base/navbar.html' %}
+	
+		<div class="container-fluid">
+
+
+			
+
+
+				<!-- Page header start -->
+				<div class="page-header">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">Staff</li>
+						<li class="breadcrumb-item active">Add Staff Details</li>
+					</ol>
+				</div>
+				<!-- Page header end -->
+
+				<!-- Content wrapper start -->
+				<div class="content-wrapper">
+
+					<!-- Row start -->
+					<form class="form-sample" id="user_create_form" method="post">
+                        {% csrf_token %}
+						<div class="row gutters">
+							<div class="col-lg-3 col-sm-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="doctor-profile">
+											<div class="doctor-thumb">
+												<img src="img/user21.png" alt="UI Kits">
+											</div>
+											<div class="input-group mb-3">
+												<div class="custom-file">
+													<input type="file" class="custom-file-input" id="changeProfile"
+														aria-describedby="changeProfile">
+													<label class="custom-file-label" for="changeProfile">Update Image</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Enter Staff Details</div>
+									</div>
+									<div class="card-body">
+										<div class="row gutters">
+											<div class= "col-sm-2 col-12">
+												<div class="form-group">
+													<label for="fullName">Title</label>
+													{{ form.title_code }}
+												</div>
+											</div>
+											<div class= "col-sm-3 col-12">
+												<div class="form-group">
+													<label for="inputEmail">First Name</label>
+													{{ form.first_name }}
+												</div>
+											</div>
+											<div class= "col-sm-3 col-12">
+												<div class="form-group">
+													<label for="inputEmail">Sir Name</label>
+													{{ form.last_name }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="inputEmail">Other Names</label>
+													{{ form.last_name }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="education">Marital Status</label>
+													{{ form.marital_status }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="inputSpeciality">Gender</label>
+													{{ form.gender }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="inputSpeciality">Gender</label>
+													{{ form.dateofbirth }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="addreSs">Designation</label>
+													{{ form.designation }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="addreSs">User Roles</label>
+													{{ form.user_roles }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="addreSs">Department</label>
+													{{ form.department }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="{{ form.phone_number_1.id_for_label }}">Phone Number 2:</label>
+													{{ form.phone_number_1 }}
+												</div>
+											</div>
+											<div class= "col-sm-4 col-12">
+												<div class="form-group">
+													<label for="{{ form.phone_number_1.id_for_label }}">Phone Number 2:</label>
+													{{ form.phone_number_2 }}
+												</div>
+											</div>
+
+											<div class= "col-sm-6 col-12">
+												<div class="form-group">
+													<label for="inputEmail">Address:</label>
+													{{ form.address }}
+												</div>
+											</div>
+											<div class= "col-sm-6 col-12">
+												<div class="form-group">
+													<label for="inputEmail">Biography:</label>
+													{{ form.biography }}
+												</div>
+											</div>
+
+											<div class="col-sm-12">
+												<div class="text-right">
+
+													<button class="btn btn-primary">Create Profile</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Create Account</div>
+									</div>
+									<div class="card-body">
+										<div class="row gutters">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label for="userName">User Name</label>
+													{{ form.username }}
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label for="email">email address</label>
+													{{ form.email }}
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label for="rePassword">Enter Password</label>
+													{{ form.password }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- Row end -->
+
+				</div>
+				<!-- Content wrapper end -->
+
+			
+			<!-- *************
+				************ Main container end *************
+			************* -->
+
+			
+
+		</div>
+
+		{% include 'base/footer.html' %}
+	</body>
+
+</html>

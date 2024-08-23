@@ -1,0 +1,356 @@
+{% load static %}
+<html lang="en"> {% include 'base.html' %} 
+    {% include 'base/header.html' %} 
+    <div class="container-fluid"> 
+        {% include 'base/navbar.html' %} 
+        {% include 'base/modelForms.html' %}
+
+
+
+
+
+            <div class="main-container">
+
+                <!-- Page header start -->
+                
+                <!-- Page header end -->
+
+                <!-- Content wrapper start -->
+                <div class="content-wrapper">
+            
+                    <!-- Row start -->
+                    <div class="row gutters">
+                        <div class="col-md-3 col-sm-4 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="account-settings">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <img src="{% static 'assets/img/avatar.webp' %}" alt="Medical Dashboards" />
+                                            </div>
+                                            <h5 class="user-name">{{patient_details.title_code}} {{patient_details.first_name}} {{patient_details.last_name}}</h5>
+                                            <h6 class="user-email">2024/{{patient_details.id}}</h6>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Full Name</b></span>
+                                                    {{patient_details.first_name}} {{patient_details.last_name}}  {{appoint.appointment_date}} {{appoint.start_time}} {{appoint.end_time}}
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Age</b></span>
+                                                    {{patient_details.date_of_birth}}  
+                                                </li> 
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Status</b></span>
+                                                    {{patient_details.civil_status}}  
+                                                </li> 
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Gender</b></span>
+                                                    {{patient_details.gender}}  
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Occupation</b></span>
+                                                    {{patient_details.occupation}}  
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Identity</b></span>
+                                                    {{patient_details.identity_type}}  {{patient_details.identity_number}}
+                                                </li>
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatePatient">
+                                                Update Detials
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-9 ">-->
+                        <div class="col-md-9" style="max-height: 550px; overflow-y: auto;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Patient Information</div>
+                                </div>
+                                
+                               
+
+
+                                    <!-- Row start -->
+                                    <div class="row gutters">
+                                        <div class="col-sm-12">
+                
+                                            <div class="accordion toggle-icons" id="toggleIcons">
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsOne">
+                                                        <a href="" class="" data-toggle="collapse" data-target="#toggleIconsCollapseOne"
+                                                            aria-expanded="true" aria-controls="toggleIconsCollapseOne">
+                                                            <i class="icon icon-shield1"></i> General Information
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseOne" class="collapse show" aria-labelledby="toggleIconsOne"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Date Visit</b></span>
+                                                                                {{patient_details.first_name}} {{patient.last_name}}
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Time Visit</b></span>
+                                                                                {{patient_details.date_of_birth}}  
+                                                                            </li> 
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Referral Doctor</b></span>
+                                                                                {{patient_details.civil_status}}  
+                                                                            </li> 
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Department</b></span>
+                                                                                {{patient_details.gender}}  
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Consultant Doctor</b></span>
+                                                                                {{patient_details.occupation}}  
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Identity</b></span>
+                                                                                {{patient_details.identity_type}}  {{patient_details.identity_number}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                               
+                                                
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsTwo">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseTwo"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseTwo">
+                                                            <i class="icon icon-tag1"></i> Patient History
+                                                        </a>
+                                                    </div>
+                                                        
+                                                        <div id="toggleIconsCollapseTwo" class="collapse" aria-labelledby="toggleIconsTwo"data-parent="#toggleIcons">
+                                                            <div class="accordion-body">
+                                                                <form method="post">
+{{vitals_detials.pulseRate}}
+                                                                    
+
+                                                                    {% csrf_token %}
+                                                                    {{ vitals_form.as_p }}
+                                                                    <button type="submit">Update Patient Details</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsThree">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseThree"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseThree">
+                                                            <i class="icon icon-triangle"></i> Vitals
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseThree" class="collapse" aria-labelledby="toggleIconsThree"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            
+
+                                                            <div class="table-container">
+                                                                <!--*************************
+                                                                    *************************
+                                                                    *************************
+                                                                    Basic table start
+                                                                *************************
+                                                                *************************
+                                                                *************************-->
+                                                                <div class="table-responsive">
+                                                                    <table class="table m-0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Date</th>
+                                                                                <th>pulseRate</th>
+                                                                                <th>temperature</th>
+                                                                                <th>height</th>
+                                                                                <th>bp</th>
+                                                                                <th>respiration</th>
+                                                                                <th>weight</th>
+                                                                                <th>action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for vitals_details in vitals_details.all%}
+                                                                            <tr>
+                                                                                <td>{{vitals_details.date}}</td>
+                                                                                <td>{{vitals_details.pulseRate}}</td>
+                                                                                <td>{{vitals_details.temperature}}</td>
+                                                                                <td>{{vitals_details.height}}</td>
+                                                                                <td>{{vitals_details.bp}}</td>
+                                                                                <td>{{vitals_details.respiration}}</td>
+                                                                                <td>{{vitals_details.weight}}</td>
+                                                                                <td></td>
+                                                                                
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                            
+                                                                            
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!--*************************
+                                                                    *************************
+                                                                    *************************
+                                                                    Basic table end
+                                                                *************************
+                                                                *************************
+                                                                *************************-->
+                                                            </div>
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddVitals">
+                                                                Update Detials
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsFour">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseFour"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseFour">
+                                                            <i class="icon icon-triangle"></i> Diagnosis
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseFour" class="collapse" aria-labelledby="toggleIconsFour"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                                                                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                                                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                                                                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                                                                of them accusamus labore sustainable VHS.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsFive">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseFive"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseFive">
+                                                            <i class="icon icon-triangle"></i> Diagnosis
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseFive" class="collapse" aria-labelledby="toggleIconsFive"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                                                                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                                                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                                                                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                                                                of them accusamus labore sustainable VHS.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsSix">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseSix"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseSix">
+                                                            <i class="icon icon-triangle"></i> Medication
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseSix" class="collapse" aria-labelledby="toggleIconsSix"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                                                                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                                                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                                                                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                                                                of them accusamus labore sustainable VHS.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsEight">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseEight"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseEight">
+                                                            <i class="icon icon-triangle"></i> Compalin
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseEight" class="collapse" aria-labelledby="toggleIconsEight"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                                                                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                                                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                                                                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                                                                of them accusamus labore sustainable VHS.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsSeven">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseSeven"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseSeven">
+                                                            <i class="icon icon-triangle"></i> Laboratory
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseSeven" class="collapse" aria-labelledby="toggleIconsSeven"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                                                                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                                                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                                                                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                                                                of them accusamus labore sustainable VHS.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                
+                                    </div>
+                                    <!-- Row end -->
+                
+                
+                                
+
+
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Row end -->
+
+                </div>
+                <!-- Content wrapper end -->
+
+
+            </div>
+    </div>
+</html>

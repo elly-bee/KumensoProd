@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+	<!-- base Page  -->
+	{% include 'base.html' %}
+	<!-- Page header start -->
+	{% include 'base/header.html' %}
+	<!-- Navigation header start -->
+	{% include 'base/navbar.html' %}
+	<body>
+	
+
+
+            <!-- Row start -->
+         
+                
+            
+                    <form method="post" action="{% url 'patient_app:appointment' %}">
+                        {% csrf_token %}
+                        
+                        <div class="content-wrapper">
+
+
+
+                            <!-- Row start -->
+                            <div class="row gutters col-lg-12">
+                                
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title">Book Appointment</div>
+                                        </div>
+
+                                        {% if form.errors %}
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    {% for field, errors in form.errors.items %}
+                                                    {% for error in errors %}
+                                                    <li>{{ error }}</li>
+                                                    {% endfor %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <div class="row gutters">
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="fullName">Assign Doctor</label>
+                                                        {{form.doctor}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="inputEmail">Patient</label>
+                                                        {{form.patient}}
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="biO">Appointment Reason</label>
+                                                        {{form.appointment_reason}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="biO">Appointment Status</label>
+                                                        {{form.status}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 col-12">
+                                                    <div class="form-group">
+                                                        <label for="education">Date</label>
+                                                        {{form.appointment_date}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 col-12">
+                                                    <div class="form-group">
+                                                        <label for="education"></label>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="addreSs">Start Time</label>
+                                                        {{form.start_time}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="addreSs">End Time</label>
+                                                        {{form.end_time}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="text-right">
+                                                    <button class="btn btn-primary">Book Appointment</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title">Pending Apointments</div>
+                                        </div>
+                                        
+                                        <div class="card-body">
+                                            <div class="row gutters">
+                                                
+                                               
+                                                
+
+                                                <div class="col-sm-12 col-12">
+                                                    <ul class="list-group">
+                                                        {% for appoint in Appointmentdata.Appointment%}
+                                                        {% if appoint.doctor == request.user%}
+                                                        <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center">
+                                                            Doctor {{appoint.doctor}} Appointment with  {{appoint.patient}} on {{appoint.appointment_date}} from {{appoint.start_time}} to {{appoint.end_time}}
+                                                            <span class="badge badge-secondary badge-pill">{{appoint.status}}</span>
+                                                        </li>
+                                                        {% endif %}
+                                                        {%endfor%}
+                                                        
+                                                    </ul>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Row end -->
+        
+                        </div>
+
+                        
+                    </form>
+                    
+                
+            </div>
+            <!-- Row end -->
+
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+	</body>
+
+</html>

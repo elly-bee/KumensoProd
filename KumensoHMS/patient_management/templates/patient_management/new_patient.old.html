@@ -1,0 +1,119 @@
+{% include 'base.html' %}
+	{% include 'base/header.html' %}
+	{% include 'base/navbar.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+                    <!-- Row start -->
+
+                    <form method="post" novalidate>
+                       
+                                           
+                       
+                        {% csrf_token %}
+                        {{ wizard.management_form }}
+                        
+                        
+                        
+                        <div class="row gutters">
+                            <div class="col-sm-12">
+                                <div id="example-form">
+                                    <h3>PatientForm</h3>
+                                    <section>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                               First Name {{wizard.form.first_name }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ patient }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.date_of_birth }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.gender }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.identity_type }}
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.identity_number }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.patient.occupation }}
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <h3>ContactInfoForm</h3>
+                                    <section>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.contact_info.address }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.contact_info.city }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.contact_info.state }}
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.contact_info.country }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.contact_info.zip_code }}
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <h3>PrimaryContactForm</h3>
+                                    <section>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.primary_contact.contact_name }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.primary_contact.contact_relationship }}
+                                            </div>
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.primary_contact.contact_phone }}
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-sm-4 col-12">
+                                                {{ wizard.form.primary_contact.contact_email }}
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <button type="submit">Submit</button>
+                    </form>
+    </div>
+
+
+    
+</div>
+<!-- Row end -->
+{% endblock %}
+
+        <!-- Steps wizard JS -->
+		<script src="{% static 'assets/vendor/wizard/jquery.steps.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/wizard/jquery.steps.custom.js' %}"></script>
+
+

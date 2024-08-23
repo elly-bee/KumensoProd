@@ -1,0 +1,72 @@
+
+<html lang="en"> {% include 'base.html' %} 
+    {% include 'base/header.html' %} 
+    <div class="container-fluid"> 
+        {% include 'base/navbar.html' %} 
+        <div class="main-container">
+{% load static %}
+<div class="content-wrapper">
+
+{% block page_title %}Patient Management{% endblock %}
+
+{% block content %}
+                <div class="row gutters text-right">
+                    <div class="col-sm-12 col-12 text-right">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h3>Patient Management</h3>
+                                <p class="text-secondary">Manage all patient related information.</p>
+                            </div>
+                            <a href="{% url "new_patient" %}" class="btn btn-primary">New Patient</a>
+                        </div>
+                        <div class="table-container">
+                            <div class="d-flex justify-content-center align-items-center">
+                                {% if patients %}
+                                    <table class="table border">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">Patient No.</th>
+                                                <th scope="col">Patient Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Phone Number</th>
+                                                <th scope="col">Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for patient in patients %}
+                                                <tr>
+                                                    <td>{{ patient.id }}</td>
+                                                    <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+                                                    <td>
+                                                        {% if patient.contact_info %}
+                                                            {{ patient.contact_info.email }}
+                                                        {% else %}
+                                                            -
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if patient.contact_info %}
+                                                            {{ patient.contact_info.phone_number_1 }}
+                                                        {% else %}
+                                                            -
+                                                        {% endif %}
+                                                    </td>
+                                                    <td><span class="badge rounded-pill bg-light">Active</span></td>
+                                                    <td class="d-flex justify-content-end">
+                                                        <a href="" class="btn btn-outline-primary btn-sm">View</a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <div class="my-4 text-center">
+                                        <p class="mb-2 text-secondary">No patients found. Start by creating a new patient.</p>
+                                        <a href="{% url "new_patient" %}" class="btn btn-outline-primary">Create Patient</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}

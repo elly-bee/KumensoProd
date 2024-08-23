@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en"> {% include 'base.html' %} {% include 'base/header.html' %} <div class="container-fluid"> {% include 'base/navbar.html' %} <div class="main-container">
+      <!-- Page header start -->
+      <!-- Page header end -->
+      <!-- Content wrapper start -->
+      <div class="content-wrapper">
+
+
+
+        <!-- Row start -->
+        <div class="row gutters text-right">
+          <div class="col-sm-6 col-12 text-right">
+            <div class="table-container">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4>Marital Status</h4>
+                </div>
+                <div class="col-md-6 text-right">
+                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#MaritalModal">
+                    <i class="icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table id="basicExamples" class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody> {% for marital in MaritalStatus_data.MaritalStatus %} <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ marital.name }}</td>
+                      <td>{{ marital.status }}</td>
+                      
+                     
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <a href="#">
+                            <button type="button" class="btn btn-info btn-sm">
+                              <i class="icon-edit1"></i>
+                            </button>
+                          </a>
+                          <a href="">
+                            <button type="button" class="btn btn-danger btn-sm">
+                              <i class="icon-cancel"></i>
+                            </button>
+                          </a>
+                        </div>
+                      </td> {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+            </div>
+          </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row end -->
+      </div>
+      <!-- Content wr end -->
+    </div>
+    <!-- Content wrapper end -->
+  </div>
+  <!-- *************
+				************ Main container end *************
+			************* -->
+  <!-- Modal -->
+  <div class="modal fade" id="MaritalModal" tabindex="-1" role="dialog" aria-labelledby="customModalTwoLabel" aria-hidden="true">undefined<div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="customModalTwoLabel">Add Marital Status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post"> {% csrf_token %} {{ MaritalStatus_form }}
+            <div class="modal-footer custom">
+              <div class="left-side">
+                <button type="button" class="btn btn-link danger" data-dismiss="modal">Cancel</button>
+              </div>
+              <div class="divider"></div>
+              <div class="right-side">
+                <button type="submit" class="btn btn-link success">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div></div>
+  <!-- Modal -->
+  <div class="modal fade" id="DeptModal" tabindex="-1" role="dialog" aria-labelledby="customModalTwoLabel" aria-hidden="true">undefined<div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="customModalTwoLabel">Add Department</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post"> {% csrf_token %} {{ Dept_form}}
+            <div class="modal-footer custom">
+              <div class="left-side">
+                <button type="button" class="btn btn-link danger" data-dismiss="modal">Cancel</button>
+              </div>
+              <div class="divider"></div>
+              <div class="right-side">
+                <button type="submit" class="btn btn-link success">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+	   </div>
+	</div>
+</div>
+      
+     {% include 'base/footer.html' %} 
+</html>

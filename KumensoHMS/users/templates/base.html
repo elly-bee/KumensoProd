@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Meta -->
+		<meta name="description" content="Responsive Bootstrap Dashboards">
+		<meta name="author" content="Bootstrap Gallery">
+		<link rel="shortcut icon" href="img/favicon.svg" />
+
+		<!-- Title -->
+		<title>{{companies.name}}</title>
+		<!-- Bootstrap css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+        	<!-- Icomoon Font Icons css -->
+        <link href="{% static 'assets/fonts/style.css' %}" rel="stylesheet">
+		<!-- Main css -->
+        <link href="{% static 'assets/css/main.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'assets/vendor/datatables/dataTables.bs4.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/datatables/dataTables.bs4-custom.css' %}" rel="stylesheet">
+
+
+        <link href="{% static 'assets/vendor/calendar/css/fullcalendar.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/calendar/css/custom-calendar.css' %}" rel="stylesheet">
+        
+
+
+        
+        <!-- Steps Wizard CSS -->
+		<!--<link rel="stylesheet" href="vendor/wizard/jquery.steps.css" />-->
+        <link href="{% static 'assets/vendor/wizard/jquery.steps.css' %}" rel="stylesheet" />
+	</head>
+
+    <body>
+
+            <!-- Required jQuery first, then Bootstrap Bundle JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/js/moment.js' %}"></script>
+
+        <!-- Data Tables -->
+        <script src="{% static 'assets/vendor/datatables/dataTables.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/datatables/dataTables.bootstrap.min.js' %}"></script>
+
+        <!-- Custom Data tables -->
+        <script src="{% static 'assets/vendor/datatables/custom/custom-datatables.js' %}"></script>
+
+        <!-- Main Js Required -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+        <!-- Steps wizard JS -->
+		<script src="{% static 'assets/vendor/wizard/jquery.steps.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/wizard/jquery.steps.custom.js' %}"></script>
+		<!--<script src="vendor/wizard/jquery.steps.custom.js"></script>-->
+        <script src="{% static 'assets/vendor/calendar/js/fullcalendar.min.js' %}"></script>
+        <!--<script src="{% static 'assets/vendor/calendar/js/custom-calendar.js' %}"></script>-->
+        <script src="{% static 'assets/vendor/calendar/js/appointment-calander.js' %}"></script>
+
+    </body >
+
+
+
+
+</html>

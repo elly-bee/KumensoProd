@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+{% block content %}
+{% include 'base.html' %}
+
+	<body class="authentication">
+
+		<!-- Container start -->
+		<div class="container">
+
+			<form method="post">
+				{% csrf_token %}
+				<div class="row justify-content-md-center">
+					<div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
+						<div class="login-screen">
+							<div class="login-box">
+								<a href="#" class="login-logo">
+									<div class="text-center">
+										<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+										  style="width: 185px;" alt="logo">
+										<h4 class="mt-0 mb-1 pb-0">Kumenso </h4>
+									  </div>
+								</a>
+																
+								
+								<!--<div class="form-group">
+									{{ form.username }}
+								</div>
+								<div class="form-group">
+									{{ form.password }}
+								</div>-->
+								<div class="form-group">
+									<input id="id_username" name="username" class="form-control" placeholder="Enter User Name" />
+									<label class="form-label" for="id_username">Username</label>
+								</div>
+								
+								<div class="form-group">
+									<input type="password" id="id_password" name="password" class="form-control" placeholder="Enter Password" />
+									<label class="form-label" for="id_password">Password</label>
+								</div>
+									<!--<div class="form-group">
+										<input type="password" class="form-control" placeholder="Password" />
+									</div>-->
+<!--
+									<div data-mdb-input-init class="form-outline mb-4">
+										<input type="email" id="form2Example11" class="form-control"
+										  placeholder="Phone number or email address" />
+										<label class="form-label" for="form2Example11">Username</label>
+									  </div>
+					  
+									  <div data-mdb-input-init class="form-outline mb-4">
+										<input type="password" id="form2Example22" class="form-control" />
+										<label class="form-label" for="form2Example22">Password</label>
+									  </div>-->
+									  <div class=" text-center">
+										<button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+										<a class="text-muted" href="#!">Forgot password?</a>
+									  </div>
+									  
+									  
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+		<!-- Container end -->
+
+		
+
+	</body>
+	{% endblock content %}
+</html>

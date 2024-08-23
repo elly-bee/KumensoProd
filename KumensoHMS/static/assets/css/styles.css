@@ -1,0 +1,41 @@
+.list-container {
+    max-width: 1024px;
+}
+
+.navbar .breadcrumb .breadcrumb-item {
+    font-size: 1rem;
+}
+
+.navbar .breadcrumb .breadcrumb-item a {
+    color: #6b7280;
+    text-decoration: none;
+    border-radius: 0.375rem;
+}
+
+.navbar .breadcrumb .breadcrumb-item a:hover {
+    color: #374151;
+    text-decoration: underline;
+}
+
+.navbar .breadcrumb .breadcrumb-item.active {
+    color: #374151;
+    font-weight: bold;
+}
+
+.page-header {
+    padding-top: 1.5rem;
+    margin-bottom: 2.25rem;
+}
+
+.tab-pane > .form-header {
+    margin-top: 2.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.tab-pane > .form-header:first-child {
+    margin-top: 1rem;
+}
+
+.form-rows > .row {
+    margin-top: 1.5rem;
+}

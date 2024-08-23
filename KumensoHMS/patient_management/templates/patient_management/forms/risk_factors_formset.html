@@ -1,0 +1,83 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="form-header">
+    <h6>Risk Factors Information</h6>
+    <small class="text-body-tertiary">Enter the patient's health risk factors</small>
+</div>
+<div class="form-rows">
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div class="row">
+            <div class="col-7">
+                <label for="{{ form.health_conditions.id_for_label }}" class="form-label">Health Conditions</label>
+                {% render_field form.health_conditions|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="healthConditionsHelpBlock" %}
+                {% if form.health_conditions.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.health_conditions.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="healthConditionsHelpBlock" class="form-text text-body-tertiary"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label for="{{ form.smoking_status.id_for_label }}" class="form-label">Smoking Status</label>
+                {% render_field form.smoking_status|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="smokingStatusHelpBlock" %}
+                {% if form.smoking_status.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.smoking_status.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="smokingStatusHelpBlock" class="form-text text-body-tertiary">Select smoking status</div>
+                {% endif %}
+            </div>
+            <div class="col-10">
+                <label for="{{ form.smoking_status_description.id_for_label }}" class="form-label">Smoking Status Description</label>
+                {% render_field form.smoking_status_description|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="smokingDescriptionHelpBlock" %}
+                {% if form.smoking_status_description.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.smoking_status_description.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="smokingDescriptionHelpBlock" class="form-text text-body-tertiary"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label for="{{ form.alcohol_use.id_for_label }}" class="form-label">Alcohol Use</label>
+                {% render_field form.alcohol_use|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="alcoholUseHelpBlock" %}
+                {% if form.alcohol_use.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.alcohol_use.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="alcoholUseHelpBlock" class="form-text text-body-tertiary">Select alcohol use status</div>
+                {% endif %}
+            </div>
+            <div class="col-10">
+                <label for="{{ form.alcohol_use_description.id_for_label }}" class="form-label">Alcohol Use Description</label>
+                {% render_field form.alcohol_use_description|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="alcoholUseHelpBlock" %}
+                {% if form.alcohol_use_description.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.alcohol_use_description.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="alcoholUseHelpBlock" class="form-text text-body-tertiary"></div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

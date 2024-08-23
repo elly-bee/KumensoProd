@@ -1,0 +1,548 @@
+{% load static %}
+<html lang="en"> {% include 'base.html' %} 
+    {% include 'base/header.html' %} 
+    <div class="container-fluid"> 
+        {% include 'base/navbar.html' %} 
+        {% include 'base/modelForms.html' %}
+
+
+
+
+
+            <div class="main-container">
+
+                <!-- Page header start -->
+                
+                <!-- Page header end -->
+
+                <!-- Content wrapper start -->
+                <div class="content-wrapper">
+            
+                    <!-- Row start -->
+                    <div class="row gutters">
+                        <div class="col-md-3 col-sm-4 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="account-settings">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <img src="{% static 'assets/img/avatar.webp' %}" alt="Medical Dashboards" />
+                                            </div>
+                                            <h5 class="user-name">{{patient_details.title_code}} {{patient_details.first_name}} {{patient_details.last_name}}</h5>
+                                            <h6 class="user-email">2024/{{patient_details.id}}</h6>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Full Name</b></span>
+                                                    {{patient_details.first_name}} {{patient_details.last_name}}  {{appoint.appointment_date}} {{appoint.start_time}} {{appoint.end_time}}
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Age</b></span>
+                                                    {{patient_details.date_of_birth}}  
+                                                </li> 
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Status</b></span>
+                                                    {{patient_details.civil_status}}  
+                                                </li> 
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Gender</b></span>
+                                                    {{patient_details.gender}}  
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Occupation</b></span>
+                                                    {{patient_details.occupation}}  
+                                                </li>
+                                                <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                    <span class=""><b>Identity</b></span>
+                                                    {{patient_details.identity_type}}  {{patient_details.identity_number}}
+                                                </li>
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatePatient">
+                                                Update Detials
+                                            </button>
+
+                                            
+                                            {% if checkIn.status == 'Checked in' or checkIn.status == 'Complete' or checkIn.status == None %}
+                                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#AddCheckIn">
+                                                    Check In
+                                                </button>
+                                            {%elif checkIn.status == 'Collect Vitals'%}
+                                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#AddVitals">
+                                                    Collect Vitals
+                                                </button>
+                                            {%elif checkIn.status == 'Perform diagnosis'%}
+                                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#AddDiagnosis">
+                                                    Examination
+                                                </button>
+                                           
+                                            {%elif checkIn.status == 'Prescription'%}
+                                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#AddPrescription">
+                                                    Prescription
+                                                </button>
+                                            {% endif%}
+                                           
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-9 ">-->
+                        <div class="col-md-9" style="max-height: 550px; overflow-y: auto;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Patient Information</div>
+                                </div>
+                                
+                               
+
+
+                                    <!-- Row start -->
+                                    <div class="row gutters">
+                                        <div class="col-sm-12">
+                
+                                            <div class="accordion toggle-icons" id="toggleIcons">
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsOne">
+                                                        <a href="" class="" data-toggle="collapse" data-target="#toggleIconsCollapseOne"
+                                                            aria-expanded="true" aria-controls="toggleIconsCollapseOne">
+                                                            <i class="icon icon-shield1"></i> General Information
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseOne" class="collapse show" aria-labelledby="toggleIconsOne"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Date Visit</b></span>
+                                                                                {{ checkIn.checkin_date|date:"F j, Y" }}
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Time Visit</b></span>
+                                                                                {{ checkIn.checkin_date|time:"g:i a" }}  
+                                                                            </li> 
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Attending Staff</b></span>
+                                                                                {{checkIn.staff}}  
+                                                                            </li> 
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Department</b></span>
+                                                                                {{checkIn.department}}  
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Occupation</b></span>
+                                                                                {{patient_details.occupation}}  
+                                                                            </li>
+                                                                            <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between align-items-center mt-2">
+                                                                                <span class=""><b>Status</b></span>
+                                                                                {{checkIn.status}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                               
+                                                
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsTwo">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseTwo"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseTwo">
+                                                            <i class="icon icon-tag1"></i> Patient History
+                                                        </a>
+                                                    </div>
+                                                        
+                                                        <div id="toggleIconsCollapseTwo" class="collapse" aria-labelledby="toggleIconsTwo"data-parent="#toggleIcons">
+                                                            <div class="accordion-body">
+                                                                <div class="row gutters">
+                                                                    {% for medhistory in medhistory %}
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Allergies</h5>
+                                                                                        <p class="m-0">{{medhistory.allergies}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Medical History</h5>
+                                                                                        <p class="m-0">{{medhistory.medical_history}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Surgical History</h5>
+                                                                                        <p class="m-0">{{medhistory.surgical_history}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Medication</h5>
+                                                                                        <p class="m-0">{{medhistory.medication}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Warnings</h5>
+                                                                                        <p class="m-0">{{medhistory.warnings}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Social History</h5>
+                                                                                        <p class="m-0">{{medhistory.social_history}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Family History</h5>
+                                                                                        <p class="m-0">{{medhistory.family_history}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12">
+                                                                        <!-- Card start -->
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="media">
+                                                                                    <div class="media-body">
+                                                                                        <h5 class="mt-0 media-heading">Personal History</h5>
+                                                                                        <p class="m-0">{{medhistory.personal_history}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </br>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Card end -->
+                                                                    </div>
+                                                                    {%endfor%}
+                                                                              
+                                                                    
+                                                                </div>
+                                                               
+
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#HealthRecord">
+                                                                    Update Patient History
+                                                                </button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                </div>
+                                                
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsThree">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseThree"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseThree">
+                                                            <i class="icon icon-triangle"></i> Vitals
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseThree" class="collapse" aria-labelledby="toggleIconsThree"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            
+
+                                                            <div class="table-container">
+                                                                <div class="table-responsive">
+                                                                    <table class="table m-0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Date</th>
+                                                                                <th>pulseRate</th>
+                                                                                <th>temperature</th>
+                                                                                <th>height</th>
+                                                                                <th>bp</th>
+                                                                                <th>respiration</th>
+                                                                                <th>weight</th>
+                                                                                <th>action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for vitals_details in vitals_details.all%}
+                                                                            <tr>
+                                                                                <td>{{vitals_details.date}}</td>
+                                                                                <td>{{vitals_details.pulseRate}}</td>
+                                                                                <td>{{vitals_details.temperature}}</td>
+                                                                                <td>{{vitals_details.height}}</td>
+                                                                                <td>{{vitals_details.bp}}</td>
+                                                                                <td>{{vitals_details.respiration}}</td>
+                                                                                <td>{{vitals_details.weight}}</td>
+                                                                                <td></td>
+                                                                                
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                            
+                                                                            
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+                                                            {% if checkIn.status == "Complete" or checkIn.status == "Checked in" %}
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddVitals">
+                                                                Update Detials
+                                                            </button>
+                                                            {% elif checkIn.status == "Collect Vitals"%}
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CheckinUpdate">
+                                                                Vitals Collected
+                                                            </button>
+                                                            {% else %}
+
+                                                            {%endif%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsFour">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseFour"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseFour">
+                                                            <i class="icon icon-triangle"></i> Examination
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseFour" class="collapse" aria-labelledby="toggleIconsFour"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            
+                                                            <div class="row gutters">
+                                                                {% for diagnosis in diagnosis_details %}
+                                                                <div class="col-md-4 col-sm-12 col-12">
+                                                                    <!-- Card start -->
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="media">
+                                                                                
+                                                                                <div class="media-body">
+                                                                                    <h5 class="mt-0 media-heading">{{diagnosis.diagnosis}}</h5>
+                                                                                    <p class="m-0">{{diagnosis.remarks}}</p>
+                                                                                </div>
+                                                                            
+                                                                            </div>
+                                                                        </br>
+                                                                            <span>{{diagnosis.date}} </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Card end -->
+                                                                </div>
+                                                                {%endfor%}
+                                                                          
+                                                                
+                                                            </div>
+                                                            {% if checkIn.status == "Complete" or checkIn.status == "Checked in" %}
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddDiagnosis">
+                                                                Update Detials
+                                                            </button>
+                                                            {% elif checkIn.status == "Perform diagnosis" %}
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CheckinUpdate">
+                                                                Performed Examination
+                                                            </button>
+                                                            {%else%}
+                                                            {%endif%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsSix">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseSix"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseSix">
+                                                            <i class="icon icon-triangle"></i> Medication
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseSix" class="collapse" aria-labelledby="toggleIconsSix"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            
+                                                            
+                                                            
+
+                                                            <div class="table-container">
+                                                                <div class="table-responsive">
+                                                                    <table class="table m-0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Name</th>
+                                                                                <th>days</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>Instruction</th>
+                                                                                <th>advice</th>
+                                                                                <th>cost</th>
+                                                                                <th>action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for checkInDetails in checkInDetails.all %}
+                                                                            <tr>
+                                                                                <td>{{checkInDetails.prescribed_id__desc}}</td>
+                                                                                <td>{{checkInDetails.days}}</td>
+                                                                                <td>{{checkInDetails.quantity}}</td>
+                                                                                <td>{{checkInDetails.instruction}}</td>
+                                                                                <td>{{checkInDetails.advice}}</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                            
+                                                                            
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+
+                                                            
+
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddPrescription">
+                                                                Prescribe
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CheckinUpdate">
+                                                                Complete
+                                                            </button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsEight">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseEight"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseEight">
+                                                            <i class="icon icon-triangle"></i> Compalin
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseEight" class="collapse" aria-labelledby="toggleIconsEight"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                           
+
+
+{{ CheckIn_form}}
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-container">
+                                                    <div class="accordion-header" id="toggleIconsSeven">
+                                                        <a href="" class="collapsed" data-toggle="collapse" data-target="#toggleIconsCollapseSeven"
+                                                            aria-expanded="false" aria-controls="toggleIconsCollapseSeven">
+                                                            <i class="icon icon-triangle"></i> Laboratory
+                                                        </a>
+                                                    </div>
+                                                    <div id="toggleIconsCollapseSeven" class="collapse" aria-labelledby="toggleIconsSeven"
+                                                        data-parent="#toggleIcons">
+                                                        <div class="accordion-body">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                
+                                    </div>
+                                    <!-- Row end -->
+                
+                
+                                
+
+
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Row end -->
+
+                </div>
+                <!-- Content wrapper end -->
+
+
+            </div>
+    </div>
+</html>

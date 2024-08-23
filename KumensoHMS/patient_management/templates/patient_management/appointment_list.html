@@ -1,0 +1,196 @@
+<!doctype html>
+{% load static %}
+
+{% load fullcalendar_tags %}
+<html lang="en">
+	<!-- base Page  -->
+	{% include 'base.html' %}
+	<!-- Page header start -->
+	{% include 'base/header.html' %}
+	<!-- Navigation header start -->
+	{% include 'base/navbar.html' %}
+
+
+
+	<body>
+	
+
+
+        <div class="main-container">
+
+
+            <!-- Page header start -->
+            
+            <!-- Page header end -->
+
+            <!-- Content wrapper start -->
+            {% calendar %}
+            <div class="content-wrapper">
+                
+                <!-- row -->
+
+
+
+                <div class="row gutters">
+                    <div class="col-sm-9">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                
+                                <table id="basicExample" class="table">
+                                <thead>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Doctor</th>
+                                    <th>Patient</th>
+                                    <th>Appointment Date</th>
+                                    <th>Appointment time</th>
+                                    <th>status</th>
+                                    <th>Manage</th>
+                                    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for appoint in Appointmentdata.Appointment%}
+                                        {% if appoint.status != 'PRN' %}
+                                                    
+                                                <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{appoint.doctor}}</td>
+                                                <td>{{appoint.patient}}</td>
+                                                {% if appoint.appointment_date is "now" %}
+                                                
+                                                <td><p>Appointment Missed</p></td>
+                                                {% else %}
+                                                    <td>{{ appoint.appointment_date }}</td>
+                                                {% endif %}
+
+                                                <td>{{appoint.start_time}}</td>
+                                                <td>{{appoint.status}} </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="{% url 'patient_app:appointmentmanage' appoint.id %}">
+                                                        <button type="button" class="btn btn-info btn-sm">
+                                                        <i class="icon-edit1"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="">
+                                                        <button type="button" class="btn btn-danger btn-sm">
+                                                        <i class="icon-cancel"></i>
+                                                        </button>
+                                                    </a>
+                                                    </div>
+                                                </td>
+                                        
+                                                
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tr>
+                                </tbody>
+                                </table>
+
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Events
+                                  
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="events-container">
+                                    <div class="event-list">
+                                        <div class="event-icon bg-info">
+                                            <i class="icon-event_available"></i>
+                                        </div>
+                                        <div class="event-info">
+                                            <div class="event-title">{{ Appointmentdata.activeApp|length }}</div>
+                                            <div class="event-date">Doctors Appointment</div>
+                                        </div>
+                                    </div>
+                                    <div class="event-list">
+                                        <div class="event-icon bg-success">
+                                            <i class="icon-event_available"></i>
+                                        </div>
+                                        <div class="event-info">
+                                            <div class="event-title">Completed Appointments</div>
+                                            <div class="event-date">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event-list">
+                                        <div class="event-icon bg-warning">
+                                            <i class="icon-event_available"></i>
+                                        </div>
+                                        <div class="event-info">
+                                            <div class="event-title">Rescheduled Appointments</div>
+                                            <div class="event-date">Today evening, at 05:00 PM</div>
+                                        </div>
+                                    </div>
+                                    <div class="event-list">
+                                        <div class="event-icon bg-danger">
+                                            <i class="icon-event_available"></i>
+                                        </div>
+                                        <div class="event-info">
+                                            <div class="event-title">Canceled Appointments</div>
+                                            <div class="event-date">25th at 03:00 PM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Appointments
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="overall-events">
+                                    <a href="#" class="event-block bg-primary">
+                                        <i class="icon-event_available"></i>
+                                        <div class="total-events">{{ Appointmentdata.activeApp|length }}</div>
+                                        Active Appointments
+                                    </a>
+                                    <a href="#" class="event-block bg-secondary">
+                                        <i class="icon-event_available"></i>
+                                        <div class="total-events">
+                                           
+                                            {% for appoint in Appointmentdata.Appointment %}
+                                                {% if appoint.status == 'PRN' %}
+                                                   {{appoint.status|length}}
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </div>
+                                        Treatments
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- row end -->
+
+                
+
+
+
+            </div>
+            <!-- Content wrapper end -->
+
+
+        </div>
+
+                
+            
+        
+	</body>
+
+</html>

@@ -1,0 +1,180 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="form-header">
+    <h6>Primary Contact Information</h6>
+    <small class="text-body-tertiary">Enter the patient's primary contact person's details</small>
+</div>
+<div class="form-rows">
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div class="row">
+            <div class="col-1">
+                <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                {% render_field form.title|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="titleHelpBlock" %}
+                {% if form.title.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="titleHelpBlock" class="form-text text-body-tertiary">Select title</div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                {% render_field form.first_name|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="firstNameHelpBlock" %}
+                {% if form.first_name.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="firstNameHelpBlock" class="form-text text-body-tertiary">Enter first name</div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                {% render_field form.last_name|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="lastNameHelpBlock" %}
+                {% if form.last_name.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.last_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="lastNameHelpBlock" class="form-text text-body-tertiary">Enter last name</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label for="{{ form.gender.id_for_label }}" class="form-label">Gender</label>
+                {% render_field form.gender|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="genderHelpBlock" %}
+                {% if form.gender.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.gender.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="genderHelpBlock" class="form-text text-body-tertiary">Select gender</div>
+                {% endif %}
+            </div>
+            <div class="col-4">
+                <label for="{{ form.relationship.id_for_label }}" class="form-label">Relationship</label>
+                {% render_field form.relationship|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="relationshipHelpBlock" %}
+                {% if form.relationship.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.relationship.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="relationshipHelpBlock" class="form-text text-body-tertiary">Select relationship</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="{{ form.identity_type.id_for_label }}" class="form-label">Identity Type</label>
+                {% render_field form.identity_type|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="idTypeHelpblock" %}
+                {% if form.identity_type.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.identity_type.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="idTypeHelpBlock" class="form-text text-body-tertiary">Select an identity type</div>
+                {% endif %}
+            </div>
+            <div class="col-5">
+                <label for="{{ form.identity_number.id_for_label }}" class="form-label">Identity Number</label>
+                {% render_field form.identity_number|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="idNumberHelpblock" %}
+                {% if form.identity_number.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.identity_number.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="idNumberHelpBlock" class="form-text text-body-tertiary">Select an identity number</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <label for="{{ form.address_1.id_for_label }}" class="form-label">Address Line 1</label>
+                {% render_field form.address_1|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="firstAddyHelpBlock" %}
+                {% if form.address_1.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.address_1.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="firstAddyHelpBlock" class="form-text text-body-tertiary"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <label for="{{ form.address_2.id_for_label }}" class="form-label">Address Line 2</label>
+                {% render_field form.address_2|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="secondAddyHelpBlock" %}
+                {% if form.address_2.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.address_2.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="secondAddyHelpBlock" class="form-text text-body-tertiary"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="{{ form.city.id_for_label }}" class="form-label">City</label>
+                {% render_field form.city|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="cityHelpBlock" %}
+                {% if form.city.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.city.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="cityHelpBlock" class="form-text text-body-tertiary">Enter city</div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <label for="{{ form.province.id_for_label }}" class="form-label">Province</label>
+                {% render_field form.province|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="provinceHelpBlock" %}
+                {% if form.province.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.province.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="provinceHelpBlock" class="form-text text-body-tertiary">Enter province</div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <label for="{{ form.country.id_for_label }}" class="form-label">Country</label>
+                {% render_field form.country|add_class:"form-control"|add_error_class:"is-invalid" aria-describedby="countryHelpBlock" %}
+                {% if form.country.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.country.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div id="countryHelpBlock" class="form-text text-body-tertiary">Enter country</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

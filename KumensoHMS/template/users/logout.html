@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+{% block content %}
+{% include 'base.html' %}
+
+	<body class="authentication">
+
+		<!-- Container start -->
+		<div class="container">
+
+
+				<div class="row justify-content-md-center">
+					<div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
+						<div class="login-screen">
+							<div class="login-box">
+
+									<h3>You have successfully Logged out</h3>
+									<!--<div class="form-group">
+										<input type="password" class="form-control" placeholder="Password" />
+									</div>-->
+									<form action="{% url 'user_app:login' %}" method="get">
+										<button type="submit" class="btn btn-info">Login</button>
+									</form>
+									<hr>
+
+									
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+		</div>
+		<!-- Container end -->
+
+	</body>
+	{% endblock content %}
+</html>

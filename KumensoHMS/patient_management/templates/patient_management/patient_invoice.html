@@ -1,0 +1,96 @@
+<html lang="en"> {% include 'base.html' %} 
+    {% include 'base/header.html' %} 
+    <div class="container-fluid"> 
+        {% include 'base/navbar.html' %} 
+        <div class="main-container">
+            <div class="content-wrapper">
+                
+
+                <div class="row gutters">
+                    <div class="col-md-9 col-sm-12 col-12">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table id="basicExample" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Checkin Date</th>
+                                                <th>Patient ID</th>
+                                                <th>Patient First Name</th>
+                                                <th>Patient Last Name</th>
+                                                <!-- Add other headers as needed -->
+                                                <th>Staff ID</th>
+                                                <th>Checkout Date</th>
+                                                <th>Department ID</th>
+                                                <th>Checkin ID</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for checkIn in checkIn %}
+                                                {% if checkIn.status == 'Complete'%}
+                                                <tr>
+                                                    <td>{{ checkIn.checkin_date }}</td>
+                                                    <td></td>
+                                                    <td>{{ checkIn.patient__first_name }}</td>
+                                                    <td>{{ checkIn.patient__last_name }}</td>
+                                                    <!-- Access other fields from the CheckIn model -->
+                                                    <td>{{ checkIn.staff_id }}</td>
+                                                    <td>{{ checkIn.checkout_date }}</td>
+                                                    <td>{{ checkIn.department_id }}</td>
+                                                    <td>{{ checkIn.checkin_id }}</td>
+                                                    <td>{{ checkIn.status }}</td>
+                                                    <td>
+                                                        <div class="btn-group btn-group-sm">
+                                                            <a href="{% url 'patient_app:patientInvoiceDetials' checkIn.checkin_id %}">
+                                                                <button type="button" class="btn btn-info btn-md">
+                                                                <i class="icon-edit1"></i>
+                                                                </button>
+                                                            </a>
+                                                        <a href="">
+                                                            <button type="button" class="btn btn-danger btn-md">
+                                                            <i class="icon-cancel"></i>
+                                                            </button>
+                                                        </a>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                                {% endif%}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+
+                        <div class="row gutters">
+                            <div class="col-md-12 col-sm-4">
+                                <div class="invoice-status">
+                                    <i class="icon-insert_invitation"></i>
+                                    <h2 class="status text-success">380</h2>
+                                    <h5 class="status-title">Invoices Paid</h5>
+                                    <p class="status-type">An invoice, bill or tab is a commercial document issued by a seller to a
+                                        buyer.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-4">
+                                <div class="invoice-status">
+                                    <i class="icon-event_note"></i>
+                                    <h2 class="status text-danger">75</h2>
+                                    <h5 class="status-title">Invoices Overdue</h5>
+                                    <p class="status-type">An invoice, bill or tab is a commercial document issued by a seller to a
+                                        buyer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
